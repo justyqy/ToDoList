@@ -48,28 +48,25 @@ var vm = new Vue({
       this.todo = "";
     },
     find(key) {
-      console.log(key);
+      // console.log(key);
       //先将数据重置，满足每次搜索都是从原始数据中进行搜索
       this.listDataInt = this.list;
-
-      console.log(this.listDataInt);
 
       //利用vue的filter模糊搜索
       this.findList = this.listDataInt.filter(
         (item) => item.title.indexOf(key) >= 0
       );
       this.listDataInt = this.findList;
-      console.log(this.findList);
+      // console.log(this.findList);
     },
-    blurli() {
-      console.log("ssss")
+    outfouse() {
       this.findList = [];
     },
     //点击列表，选择
     appClick: function (data) {
 
       this.todo = data.title
-      console.log(data)
+      // console.log(data)
       this.findList = [];
     },
     delFn(item) {

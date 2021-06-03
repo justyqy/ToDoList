@@ -255,3 +255,6 @@ ul {
   color: #fff;
   background: #00a0e9;
 }
+.list-item-text{
+  width: 100%;
+}

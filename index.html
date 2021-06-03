@@ -21,7 +21,7 @@
             v-on:keyup="find(todo)" v-model="todo" />
 
         <ul class="list-module" v-show="findList.length">
-            <li v-for="(item,index) in findList" @click="appClick(item)" :key="index"  @blur="blurli()">
+            <li v-for="(item,index) in findList" @blur="outfouse()" @click="appClick(item)" :key="index"  >
                 <span class="list-item-text">{{item.title}}</span>
             </li>
         </ul>
