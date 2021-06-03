@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="page-top">
+        <div class="page-content">
+            <h2>TODO List</h2>
+        </div>
+    </div>
+
+    <div class="main">
+        <h3 class="big-title">添加任务：</h3>
+        <input placeholder=" 例如：吃饭睡觉；提示：按下回車鍵即可添加任务" class="task-input" type="text" v-on:keyup.enter="enterFn"
+            v-on:keyup="find(todo)" v-model="todo" />
+
+        <ul class="list-module" v-show="findList.length">
+            <li v-for="(item,index) in findList" @click="appClick(item)" :key="index"  @blur="blurli()">
+                <span class="list-item-text">{{item.title}}</span>
+            </li>
+        </ul>
+        <ul class="task-count">
+            <li>{{unComplete}}个任务未完成</li>
+            <li class="action">
+                <a :class="{active:visibility!=='unCompleted'&&visibility!=='completed'}" href="#all">所有任务</a>
+                <a :class="{active:visibility==='unCompleted'}" href="#unCompleted">未完成的任务</a>
+                <a :class="{active:visibility==='completed'}" href="#completed">完成的任务</a>
+            </li>
+        </ul>
+        <h3 class="big-title">任务列表：</h3>
+        <div class="tasks">
+            <span class="no-task-tip" v-show="!list.length">还没有添加任何任务</span>
+            <ul class="todo-list" v-show="list.length">
+                <li class="todo" v-for="item in filterData"
+                    v-bind:class="{completed:item.isComplete,editing:item===edtorTodos}">
+                    <div class="view">
+                        <input class="toggle" type="checkbox" v-model="item.isComplete" />
+                        <label @dblclick="edtorTodo(item)">{{item.title}}</label>
+                        <button class="destroy" @click="delFn(item)"></button>
+                    </div>
+                    <input class="edit" type="text" v-focus="edtorTodos===item" v-model="item.title"
+                        @blur="edtoEnd(item)" @keyup.enter="edtoEnd(item)" @keyup.esc="cancelEdit(item)" />
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script src="./todo.js"></script>
+</body>
+
+</html>
